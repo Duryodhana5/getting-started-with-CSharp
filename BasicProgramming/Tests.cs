@@ -5,6 +5,7 @@ namespace getting_started_with_CSharp.BasicProgramming
     public class Tests
     {
         Methods practice = new Methods();
+
         [Test]
         public void VerifyAddTwoNumber()
         {
@@ -15,14 +16,25 @@ namespace getting_started_with_CSharp.BasicProgramming
         [Test]
         public void GetHouseInfo()
         {
-            Console.WriteLine("House Info:");
+            // Call the common method for house information
+            DisplayHouseDetails();
+        }
+
+        // Common method to display house details, price, and date
+        private void DisplayHouseDetails()
+        {
+            // Getting house details
             Methods.getHouseInfo house = new Methods.getHouseInfo();
-            string houseInfo = house.houseDetails();
-            Console.WriteLine(houseInfo);
+            Console.WriteLine("House Info:");
+            Console.WriteLine(house.houseDetails());
+
+            // Getting house price
             Console.WriteLine("House Price:");
             Methods.GetHousePrice();
+
+            // Getting current date
             Console.WriteLine("Today's Date:");
-            Methods.GetHousePrice();
+            practice.DisplayTodaysDate();
         }
     }
 }
