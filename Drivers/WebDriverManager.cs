@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -8,42 +8,47 @@ namespace getting_started_with_CSharp.Drivers
 {
     public class WebDriverManager
     {
-        private static IWebDriver _driver;
+        // Store all driver instances
+        private static List<IWebDriver> activeDrivers = new List<IWebDriver>();
 
         // This method will return the driver instance
-        public static IWebDriver GetDriver(string browser = "chrome")
+        public static IWebDriver GetDriver(string browser)
         {
-            if (_driver == null)
-            {
-                _driver = InitializeDriver(browser);
-            }
-            return _driver;
+            IWebDriver driver = InitializeDriver(browser);
+            activeDrivers.Add(driver);
+            return driver;
         }
 
         // Initialize the WebDriver based on the browser
         private static IWebDriver InitializeDriver(string browser)
         {
+            IWebDriver driver;
             switch (browser.ToLower())
             {
                 case "chrome":
-                    return new ChromeDriver();
+                    driver = new ChromeDriver();
+                    break;
                 case "firefox":
-                    return new FirefoxDriver();
+                    driver = new FirefoxDriver();
+                    break;
                 case "edge":
-                    return new EdgeDriver();
+                    driver = new EdgeDriver();
+                    break;
                 default:
                     throw new ArgumentException("Unsupported browser: " + browser);
             }
+            return driver;
         }
 
-        // Method to quit the driver and clean up
-        public static void QuitDriver()
+        // Method to quit all active drivers
+        public static void QuitAllDrivers()
         {
-            if (_driver != null)
+            foreach (var driver in activeDrivers)
             {
-                _driver.Quit();
-                _driver = null;
+                driver.Quit();
+                driver.Dispose();
             }
+            activeDrivers.Clear();
         }
     }
 }

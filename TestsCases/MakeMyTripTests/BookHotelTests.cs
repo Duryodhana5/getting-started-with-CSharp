@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace getting_started_with_CSharp.BasicProgramming
+namespace getting_started_with_CSharp.TestsCases.MakeMyTripTests
 {
-    internal class Hashtable
+    public class BookHotelTests
     {
 
     }

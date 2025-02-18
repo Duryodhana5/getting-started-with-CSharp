@@ -1,17 +1,20 @@
 ﻿using System;
-using OpenQA.Selenium;
-using AventStack.ExtentReports;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using AventStack.ExtentReports.MarkupUtils;
-using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Config;
-using NUnit.Framework;
-using NUnit.Framework.Interfaces;
+using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports;
 using getting_started_with_CSharp.Drivers;
 using getting_started_with_CSharp.Pages.HrmOrangePages;
+using NUnit.Framework.Interfaces;
+using OpenQA.Selenium;
 
 namespace getting_started_with_CSharp.Utilities
 {
-    public class BaseTest
+    public class MakeMyTripBaseTest
     {
         protected IWebDriver driver;
         protected LoginPage loginPage;
@@ -20,7 +23,7 @@ namespace getting_started_with_CSharp.Utilities
         protected string browserType;
 
         // Constructor to accept the browser type
-        public BaseTest(string browser)
+        public MakeMyTripBaseTest(string browser)
         {
             this.browserType = browser;
         }
@@ -34,8 +37,7 @@ namespace getting_started_with_CSharp.Utilities
 
             // Initialize the driver only once per browser type
             driver = WebDriverManager.GetDriver(browserType);
-            driver.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-            Thread.Sleep(2000);
+            driver.Navigate().GoToUrl("https://www.makemytrip.com/");
             driver.Manage().Window.Maximize();
             loginPage = new LoginPage(driver);
         }
@@ -93,3 +95,4 @@ namespace getting_started_with_CSharp.Utilities
         }
     }
 }
+
