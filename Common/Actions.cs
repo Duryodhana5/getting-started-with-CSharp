@@ -27,6 +27,8 @@ namespace getting_started_with_CSharp.Common
 
         public void ClickOnElement(By locator)
         {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            var element = wait.Until(ExpectedConditions.ElementToBeClickable(locator));
             FindElement(locator).Click();
         }
 
