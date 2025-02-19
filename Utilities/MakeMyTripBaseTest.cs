@@ -11,13 +11,14 @@ using getting_started_with_CSharp.Drivers;
 using getting_started_with_CSharp.Pages.HrmOrangePages;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using getting_started_with_CSharp.Pages.MakeMyTripPages;
 
 namespace getting_started_with_CSharp.Utilities
 {
     public class MakeMyTripBaseTest
     {
         protected IWebDriver driver;
-        protected LoginPage loginPage;
+        protected BookHotelPages bookHotelPages;
         private static ExtentReports extent;
         protected ExtentTest test;
         protected string browserType;
@@ -39,7 +40,7 @@ namespace getting_started_with_CSharp.Utilities
             driver = WebDriverManager.GetDriver(browserType);
             driver.Navigate().GoToUrl("https://www.makemytrip.com/");
             driver.Manage().Window.Maximize();
-            loginPage = new LoginPage(driver);
+            bookHotelPages = new BookHotelPages(driver);
         }
 
         public static ExtentReports CreateInstance(string filename)
