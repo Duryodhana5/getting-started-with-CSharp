@@ -22,6 +22,7 @@ namespace getting_started_with_CSharp.Pages.HrmOrangePages
             actions = new Actions(driver);
         }
 
+        // Locators for Login Page
         private By userName = By.Name("username");
         private By passWord = By.Name("password");
         private By loginButton = By.XPath("//button[text()=' Login ']");
