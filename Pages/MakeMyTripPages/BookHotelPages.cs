@@ -29,6 +29,10 @@ namespace getting_started_with_CSharp.Pages.MakeMyTripPages
 
         // Locators for Book ITC Kohenur Hotel
         private By SearchHotelName = By.XPath("//input[@placeholder='Search for locality / hotel name']");
+        private By DropDownITCKohenur = By.XPath("//span[contains(text(),'ITC Kohenur - A Luxury Collection Hotel, Hyderabad')]");
+        private By ClickOnITCKohenur = By.XPath("//span[@id='htl_id_seo_201804031804379537']");
+        private By ClickOnSuiteRoom = By.XPath("//div[@id='room8']//p[contains(text(),'SELECT ROOM')]");
+        private By DeluxeSuiteWithBalcony = By.XPath("//h3[contains(text(),'Deluxe Suite with Balcony')]");
 
         public void SearchHotel(string City)
         {
@@ -49,9 +53,13 @@ namespace getting_started_with_CSharp.Pages.MakeMyTripPages
             return actions.IsElementVisible(HyderabadHotels);
         }
 
-        public void BookHotelInHyderabad(string HotelName)
+        public void BookRoomInITCKohenur(string HotelName)
         {
             actions.EnterText(SearchHotelName, HotelName);
+            actions.ClickOnElement(DropDownITCKohenur);
+            actions.ClickOnElement(ClickOnITCKohenur);
+            actions.ClickOnElement(ClickOnSuiteRoom);
+            actions.ScrollToElement(DeluxeSuiteWithBalcony);
         }
     }
 }

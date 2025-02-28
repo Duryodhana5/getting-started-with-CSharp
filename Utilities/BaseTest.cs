@@ -32,7 +32,7 @@ namespace getting_started_with_CSharp.Utilities
             string filename = "Extent_" + currentTime.ToString("yyyy_MM_dd_HH_mm_ss") + ".html";
             extent = CreateInstance(filename);
 
-            // Initialize the driver only once per browser type
+            //Initialize the driver only once per browser type
             driver = WebDriverManager.GetDriver(browserType);
             driver.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
             Thread.Sleep(2000);

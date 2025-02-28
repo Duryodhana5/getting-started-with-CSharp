@@ -50,6 +50,12 @@ namespace getting_started_with_CSharp.Common
             {
                 return false;
             }
+
+        }
+        public void ScrollToElement(By locator)
+        {
+            IWebElement element = FindElement(locator);
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
         }
     }
 }

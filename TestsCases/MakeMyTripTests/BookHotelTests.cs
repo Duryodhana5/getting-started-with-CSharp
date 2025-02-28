@@ -14,13 +14,17 @@ namespace getting_started_with_CSharp.TestsCases.MakeMyTripTests
         {
         }
 
-        [Test]
+        [Test, Order(1)]
         public void SearchHotelsInHyderabad()
         {
             bookHotelPages.SearchHotel("Hyderabad");
             Assert.IsTrue(bookHotelPages.ShowingHotelsInHyderabad(), "Hotels not visible");
         }
 
-        
+        [Test, Order(2)]
+        public void BookSuiteRoomInITCKohenur()
+        {
+            bookHotelPages.BookRoomInITCKohenur("ITC Kohenur");
+        }
     }
 }
