@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using AventStack.ExtentReports.MarkupUtils;
-using AventStack.ExtentReports.Reporter.Config;
-using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
-using getting_started_with_CSharp.Drivers;
-using getting_started_with_CSharp.Pages.HrmOrangePages;
+using AventStack.ExtentReports.MarkupUtils;
+using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports.Reporter.Config;
+using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using getting_started_with_CSharp.Drivers;
 using getting_started_with_CSharp.Pages.MakeMyTripPages;
 
 namespace getting_started_with_CSharp.Utilities
@@ -23,20 +24,18 @@ namespace getting_started_with_CSharp.Utilities
         protected ExtentTest test;
         protected string browserType;
 
-        // Constructor to accept the browser type
         public MakeMyTripBaseTest(string browser)
         {
             this.browserType = browser;
         }
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public async Task OneTimeSetUp()
         {
             DateTime currentTime = DateTime.Now;
             string filename = "Extent_" + currentTime.ToString("yyyy_MM_dd_HH_mm_ss") + ".html";
             extent = CreateInstance(filename);
 
-            // Initialize the driver only once per browser type
             driver = WebDriverManager.GetDriver(browserType);
             driver.Navigate().GoToUrl("https://www.makemytrip.com/");
             driver.Manage().Window.Maximize();
@@ -45,15 +44,16 @@ namespace getting_started_with_CSharp.Utilities
 
         public static ExtentReports CreateInstance(string filename)
         {
-            var htmlReport = new ExtentSparkReporter(Path.Combine(Directory.GetParent(Environment.CurrentDirectory).FullName, "reports", filename));
+            var reportPath = Path.Combine(Directory.GetCurrentDirectory(), "reports", filename);
+            var htmlReport = new ExtentSparkReporter(reportPath);
             htmlReport.Config.Theme = Theme.Standard;
-            htmlReport.Config.DocumentTitle = "Basava Duryodhana";
+            htmlReport.Config.DocumentTitle = "Automation Report";
             htmlReport.Config.ReportName = "Automation Testing";
             htmlReport.Config.Encoding = "UTF-8";
 
             extent = new ExtentReports();
             extent.AttachReporter(htmlReport);
-            extent.AddSystemInfo("Automation Tester", "Basava Duryodhana");
+            extent.AddSystemInfo("Automation Tester", "Test User");
             return extent;
         }
 
@@ -67,33 +67,27 @@ namespace getting_started_with_CSharp.Utilities
         public void AfterTest()
         {
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
-            if (testStatus == TestStatus.Passed)
+            switch (testStatus)
             {
-                test.Pass("Pass: " + TestContext.CurrentContext.Result.Message);
-                IMarkup markup = MarkupHelper.CreateLabel("PASS", ExtentColor.Orange);
-                test.Pass(markup);
-            }
-            else if (testStatus == TestStatus.Failed)
-            {
-                test.Fail("Fail: " + TestContext.CurrentContext.Result.Message);
-                IMarkup markup = MarkupHelper.CreateLabel("FAIL", ExtentColor.Red);
-                test.Fail(markup);
-            }
-            else if (testStatus == TestStatus.Skipped)
-            {
-                test.Skip("Skip: " + TestContext.CurrentContext.Result.Message);
-                IMarkup markup = MarkupHelper.CreateLabel("SKIP", ExtentColor.Brown);
-                test.Skip(markup);
+                case TestStatus.Passed:
+                    test.Pass("Pass: " + TestContext.CurrentContext.Result.Message);
+                    test.Pass(MarkupHelper.CreateLabel("PASS", ExtentColor.Green));
+                    break;
+                case TestStatus.Failed:
+                    test.Fail("Fail: " + TestContext.CurrentContext.Result.Message);
+                    test.Fail(MarkupHelper.CreateLabel("FAIL", ExtentColor.Red));
+                    break;
+                case TestStatus.Skipped:
+                    test.Skip("Skip: " + TestContext.CurrentContext.Result.Message);
+                    test.Skip(MarkupHelper.CreateLabel("SKIP", ExtentColor.Orange));
+                    break;
             }
         }
 
         [OneTimeTearDown]
         public void TearDown()
         {
-            // Quit all drivers once all tests are completed for the browser type
-            //WebDriverManager.QuitAllDrivers();
             extent.Flush();
         }
     }
 }
-
