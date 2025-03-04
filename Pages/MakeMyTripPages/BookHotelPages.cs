@@ -32,7 +32,7 @@ namespace getting_started_with_CSharp.Pages.MakeMyTripPages
         private By DropDownITCKohenur = By.XPath("//span[contains(text(),'ITC Kohenur - A Luxury Collection Hotel, Hyderabad')]");
         private By ClickOnITCKohenur = By.XPath("//span[@id='htl_id_seo_201804031804379537']");
         private By ClickOnSuiteRoom = By.XPath("//div[@id='room8']//p[contains(text(),'SELECT ROOM')]");
-        private By DeluxeSuiteWithBalcony = By.XPath("//h3[contains(text(),'Deluxe Suite with Balcony')]");
+
 
         public void SearchHotel(string City)
         {
@@ -59,7 +59,6 @@ namespace getting_started_with_CSharp.Pages.MakeMyTripPages
             actions.ClickOnElement(DropDownITCKohenur);
             actions.ClickOnElement(ClickOnITCKohenur);
             actions.ClickOnElement(ClickOnSuiteRoom);
-            actions.ScrollToElement(DeluxeSuiteWithBalcony);
         }
     }
 }
