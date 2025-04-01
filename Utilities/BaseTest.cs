@@ -89,6 +89,7 @@ namespace getting_started_with_CSharp.Utilities
         {
             // Quit all drivers once all tests are completed for the browser type
             //WebDriverManager.QuitAllDrivers();
+            driver.Dispose();
             extent.Flush();
         }
     }

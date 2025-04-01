@@ -21,8 +21,8 @@ namespace getting_started_with_CSharp.Pages.MakeMyTripPages
         private By ClickOncity = By.XPath("//input[@id='city']");
         private By EnterCityName = By.XPath("//input[@placeholder='Where do you want to stay?']");
         private By SelectFirstDropdown = By.XPath("//ul[@role='listbox']/li/descendant::b[contains(text(),'Hyderabad')]");
-        private By Startingdate = By.XPath("//div[@aria-label='Sat Mar 15 2025']");
-        private By EndDate = By.XPath("//div[@aria-label='Wed Mar 26 2025']");
+        private By Startingdate = By.XPath("//div[@aria-label='Wed Mar 26 2025']");
+        private By EndDate = By.XPath("//div[@aria-label='Tue Apr 15 2025']");
         private By ApplyFilter = By.XPath("//button[normalize-space()='Apply']");
         private By SearchButton = By.XPath("//button[@id='hsw_search_button']");
         private By HyderabadHotels = By.XPath("//div[@class ='latoBlack blackText appendBottom20 ']//p[@class = 'font26']");
