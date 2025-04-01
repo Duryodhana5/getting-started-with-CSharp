@@ -7,7 +7,7 @@ using getting_started_with_CSharp.Utilities;
 
 namespace getting_started_with_CSharp.TestsCases.MakeMyTripTests
 {
-    [TestFixture("chrome")]
+    [TestFixture("firefox")]
     public class BookHotelTests : MakeMyTripBaseTest
     {
         public BookHotelTests(string browser) : base(browser)

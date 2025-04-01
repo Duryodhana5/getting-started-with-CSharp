@@ -9,8 +9,8 @@ using getting_started_with_CSharp.Utilities;
 
 namespace getting_started_with_CSharp.TestsCases.HrmOrangeTests
 {
-    [TestFixture("chrome")]
-    //[TestFixture("firefox")]
+    //[TestFixture("chrome")]
+    [TestFixture("firefox")]
     //[TestFixture("edge")]
     [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture, Order(1)]
