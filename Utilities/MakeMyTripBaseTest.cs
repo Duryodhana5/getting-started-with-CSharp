@@ -87,6 +87,11 @@ namespace getting_started_with_CSharp.Utilities
         [OneTimeTearDown]
         public void TearDown()
         {
+            if (driver != null)
+            {
+                driver.Quit();
+                driver.Dispose();
+            }
             extent.Flush();
         }
     }
