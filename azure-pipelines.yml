@@ -33,7 +33,5 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     testAssemblyVer2: '\$(BuildConfiguration)\\Selenium_Demo.dll'
-    #testFiltercriteria: 'TestCategory=Handling Multiple Windows | TestCategory=Actions'
-    testFiltercriteria: 'TestCategory=Handling Multiple Windows'
     #rerunFailedTests: true
     #rerunMaxAttempts: 2
