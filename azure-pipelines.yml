@@ -32,3 +32,6 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    testAssemblyVer2: '\$(BuildConfiguration)\\Selenium_Demo.dll'
+    #rerunFailedTests: true
+    #rerunMaxAttempts: 2
