@@ -71,7 +71,7 @@ namespace getting_started_with_CSharp.Pages.HrmOrangePages
             actions.EnterText(employeeId, employeeValue);
             actions.ClickOnElement(saveButton);
             // Enable Login Details and Enter Credentials
-            //actions.ClickOnElement(createLoginDetailsCheckbox);
+            actions.ClickOnElement(createLoginDetailsCheckbox);
         }
         public bool IsAddedPersonalDetails()
         {
@@ -88,7 +88,7 @@ namespace getting_started_with_CSharp.Pages.HrmOrangePages
             actions.ClickOnElement(searchButton);
             actions.ClickOnElement(selectEmployee);
             actions.ClickOnElement(deleteButton);
-            actions.ClickOnElement(confirmDeleteButton);
+            // actions.ClickOnElement(confirmDeleteButton);
         }
 
         public bool IsEmployeeDeleted()
